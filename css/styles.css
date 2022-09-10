@@ -33,6 +33,13 @@ a:hover {
   object-fit: cover;
 }
 
+.event-img-small {
+  width: 250px;
+  height: 150px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
 .logo {
   bottom: 1rem;
   right: 2rem;
