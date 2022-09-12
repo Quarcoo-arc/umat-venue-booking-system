@@ -35,15 +35,21 @@
         <legend>Event Information</legend>
         <div class="mb-3">
           <label for="event_name" class="form-label">Event Name</label>
-          <input type="text" class="form-control" id="event_name" />
+          <input
+            type="text"
+            class="form-control"
+            id="event_name"
+            placeholder="The Hahaha Show"
+          />
         </div>
         <div class="mb-3">
-          <label for="event_time" class="form-label">Event Date</label>
-          <input type="datetime" class="form-control" id="event_date" />
-        </div>
-        <div class="mb-3">
-          <label for="event_time" class="form-label">Event Time</label>
-          <input type="datetime" class="form-control" id="event_time" />
+          <label for="event_time" class="form-label">Event Date and Time</label>
+          <input
+            type="datetime"
+            class="form-control"
+            id="event_date"
+            placeholder="22/12/2022 14:30"
+          />
         </div>
         <div class="mb-3">
           <label for="event_duration" class="form-label">Duration</label>
@@ -52,6 +58,7 @@
             class="form-control"
             id="event_duration"
             aria-describedby="durationHelp"
+            placeholder="3"
           />
           <div id="emailHelp" class="form-text">
             How long the event will last (in hours).
@@ -68,7 +75,7 @@
             aria-describedby="additionalInfoHelp"
           />
           <div id="additionalInfoHelp" class="form-text">
-            Any thing else you would like us to know about your event?
+            Anything else you would like us to know about your event?
           </div>
         </div>
       </fieldset>
