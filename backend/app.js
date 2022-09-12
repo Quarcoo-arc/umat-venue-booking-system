@@ -21,6 +21,7 @@ const eventSchema = new Schema({
   contact_person: String,
   phone_no: String,
   email: String,
+  additional_info: String,
 });
 
 const Event = model("Event", eventSchema);
@@ -28,11 +29,33 @@ const Event = model("Event", eventSchema);
 app.get("/events", (req, res) => {
   Event.find({}, (err, events) => {
     res.send({
+      success: true,
       events,
     });
   });
 });
 
-app.listen(3000, function () {
+app.post("/events", (req, res) => {
+  // TODO: Change event items to req.body.<param_name>
+  const event = new Event({
+    ...req.body,
+  });
+
+  event.save((err) => {
+    if (err) {
+      res.send({
+        success: false,
+        event,
+      });
+    } else {
+      res.send({
+        success: true,
+        event,
+      });
+    }
+  });
+});
+
+app.listen(3000, () => {
   console.log("Server started on port 3000");
 });

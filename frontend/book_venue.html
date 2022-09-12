@@ -22,8 +22,8 @@
     <title>UMaT Venue Booking System</title>
   </head>
   <body>
-    <h5 class="mt-4 ms-5">&lt; Back</h5>
-    <form class="m-5">
+    <h5 class="mt-4 ms-5"><a href="./venues.html">&lt; Back</a></h5>
+    <form id="form" class="m-5">
       <fieldset disabled>
         <legend>Location Info</legend>
         <div class="mb-3">
@@ -36,6 +36,10 @@
         <div class="mb-3">
           <label for="event_name" class="form-label">Event Name</label>
           <input type="text" class="form-control" id="event_name" />
+        </div>
+        <div class="mb-3">
+          <label for="event_time" class="form-label">Event Date</label>
+          <input type="datetime" class="form-control" id="event_date" />
         </div>
         <div class="mb-3">
           <label for="event_time" class="form-label">Event Time</label>
@@ -51,6 +55,20 @@
           />
           <div id="emailHelp" class="form-text">
             How long the event will last (in hours).
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="additional_info" class="form-label"
+            >Additional Information</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            id="additional_info"
+            aria-describedby="additionalInfoHelp"
+          />
+          <div id="additionalInfoHelp" class="form-text">
+            Any thing else you would like us to know about your event?
           </div>
         </div>
       </fieldset>
@@ -75,9 +93,9 @@
         <div class="mb-3">
           <label for="phone_no" class="form-label">Phone Number</label>
           <input
-            type="phone_no"
+            type="text"
             class="form-control"
-            id="text"
+            id="phone_no"
             aria-describedby="emailHelp"
           />
           <div id="emailHelp" class="form-text">Active phone number.</div>
