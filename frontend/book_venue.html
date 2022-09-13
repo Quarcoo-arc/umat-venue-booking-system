@@ -23,6 +23,7 @@
   </head>
   <body>
     <h5 class="mt-4 ms-5"><a href="./venues.html">&lt; Back</a></h5>
+    <h1 class="my-4 text-center">Book Venue</h1>
     <form id="form" class="m-5">
       <fieldset disabled>
         <legend>Location Info</legend>
@@ -40,6 +41,7 @@
             class="form-control"
             id="event_name"
             placeholder="The Hahaha Show"
+            required
           />
         </div>
         <div class="mb-3">
@@ -49,6 +51,7 @@
             class="form-control"
             id="event_date"
             placeholder="22/12/2022 14:30"
+            required
           />
         </div>
         <div class="mb-3">
@@ -59,6 +62,7 @@
             id="event_duration"
             aria-describedby="durationHelp"
             placeholder="3"
+            required
           />
           <div id="emailHelp" class="form-text">
             How long the event will last (in hours).
@@ -83,7 +87,7 @@
         <legend>Contact Details</legend>
         <div class="mb-3">
           <label for="name" class="form-label">Name</label>
-          <input type="text" class="form-control" id="name" />
+          <input type="text" class="form-control" id="name" required />
         </div>
         <div class="mb-3">
           <label for="email" class="form-label">Email address</label>
@@ -92,6 +96,7 @@
             class="form-control"
             id="email"
             aria-describedby="emailHelp"
+            required
           />
           <div id="emailHelp" class="form-text">
             Email address we can use to contact you.
@@ -104,6 +109,7 @@
             class="form-control"
             id="phone_no"
             aria-describedby="emailHelp"
+            required
           />
           <div id="emailHelp" class="form-text">Active phone number.</div>
         </div>

@@ -32,14 +32,6 @@ const eventSchema = new Schema({
 
 const Event = model("Event", eventSchema);
 
-const transporter = nodemailer.createTransport({
-  service: "gmail",
-  auth: {
-    user: "mquarcoo@kehillahglobal.com",
-    pass: process.env.PASSWORD,
-  },
-});
-
 app.get("/events", (req, res) => {
   try {
     Event.find({}, (err, events) => {
@@ -70,10 +62,18 @@ app.post("/events", (req, res) => {
     });
 
     // Send email
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: process.env.EMAIL,
+        pass: process.env.PASSWORD,
+      },
+    });
+
     const mailOptions = {
       from: "mquarcoo@kehillahglobal.com",
       to: "michaelquarcoo04@gmail.com, " + event.email,
-      subject: `Venue Booking request for ${location}`,
+      subject: `Venue Booking request for ${event.location}`,
       html: `<div>
               <h1>Venue Booking Request</h1> 
               <br /> 
@@ -83,8 +83,9 @@ app.post("/events", (req, res) => {
               <p>Time: ${new Date(event.date).toTimeString()}</p>
               <p>Duration: ${event.duration} hours</p>
               <p>
-                Additional Information: $
-                {event.additional_info ? event.additional_info : "None"}
+                Additional Information: ${
+                  event.additional_info ? event.additional_info : "None"
+                }
               </p>
               <br />
               <br />
@@ -103,21 +104,19 @@ app.post("/events", (req, res) => {
         });
         return;
       } else {
-        console.log("Email sent: " + info.response);
-      }
-    });
-
-    event.save((err) => {
-      if (err) {
-        res.send({
-          success: false,
-          event,
-          error: err,
-        });
-      } else {
-        res.send({
-          success: true,
-          event,
+        event.save((err) => {
+          if (err) {
+            res.send({
+              success: false,
+              event,
+              error: err,
+            });
+          } else {
+            res.send({
+              success: true,
+              event,
+            });
+          }
         });
       }
     });
