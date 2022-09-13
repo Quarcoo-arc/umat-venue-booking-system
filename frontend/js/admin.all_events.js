@@ -1,10 +1,5 @@
-const eventsTxt = document.getElementById("events-no");
-const newEventsTxt = document.getElementById("new-events-no");
-const approvedEventsTxt = document.getElementById("approved-events-no");
-const disapprovedEventsTxt = document.getElementById("disapproved-events-no");
-
-const fetchEvents = async () => {
-  const result = await fetch("http://localhost:3000/events", {
+const fetchUpcomingEvents = async () => {
+  const result = await fetch("http://localhost:3000/events/approved", {
     method: "GET",
     headers: { "Content-Type": "application/json" },
   });
@@ -23,4 +18,4 @@ const fetchEvents = async () => {
   }
 };
 
-fetchEvents();
+fetchUpcomingEvents();

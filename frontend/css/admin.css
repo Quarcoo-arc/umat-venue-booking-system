@@ -1,3 +1,16 @@
+a,
+a:hover {
+  color: unset;
+  text-decoration: none;
+  box-sizing: content-box;
+}
+
+.fit-content {
+  width: fit-content;
+  margin: unset;
+  padding: unset;
+}
+
 .flex-container {
   margin-top: 3rem;
   width: 100%;

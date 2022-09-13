@@ -60,15 +60,34 @@ app.get("/events", (req, res) => {
         no_of_approved_events: approved_events.length,
         no_of_requested_events: requested_events.length,
         no_of_disapproved_events: disapproved_events.length,
-        requested_events,
-        approved_events,
-        disapproved_events,
-        events,
       });
     });
   } catch (error) {
     res.send({
       success: false,
+      error,
+    });
+  }
+});
+
+app.get("/events/all", (req, res) => {
+  try {
+    Event.find({}, (err, events) => {
+      if (err) {
+        res.send({
+          success: false,
+          error: err,
+        });
+      } else {
+        res.send({
+          succes: true,
+          events,
+        });
+      }
+    });
+  } catch (error) {
+    res.send({
+      succes: false,
       error,
     });
   }
@@ -163,6 +182,8 @@ app.post("/events", (req, res) => {
     // Send email
     const transporter = nodemailer.createTransport({
       service: "gmail",
+      port: 465,
+      secure: true,
       auth: {
         user: process.env.EMAIL,
         pass: process.env.PASSWORD,
