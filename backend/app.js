@@ -28,6 +28,8 @@ const eventSchema = new Schema({
   phone_no: String,
   email: String,
   additional_info: String,
+  is_student: Boolean,
+  index_no: String,
 });
 
 const Event = model("Event", eventSchema);
@@ -59,6 +61,8 @@ app.post("/events", (req, res) => {
       phone_no: req.body.phone_no,
       email: req.body.email,
       additional_info: req.body.additional_info,
+      is_student: req.body.is_student,
+      index_no: req.body.index_no,
     });
 
     // Send email
@@ -93,6 +97,10 @@ app.post("/events", (req, res) => {
               <p>Name: ${event.contact_person}</p>
               <p>Phone Number: ${event.phone_no}</p>
               <p>Email Address: ${event.email}</p>
+              <p>Status: ${event.is_student ? "Student" : "Non-student"}</p>
+              <p>${
+                event.is_student ? "Index Number: " + event.index_no : ""
+              }</p>
             </div>`,
     };
 
@@ -101,6 +109,7 @@ app.post("/events", (req, res) => {
         res.send({
           success: false,
           error,
+          message: "Failed to send email",
         });
         return;
       } else {

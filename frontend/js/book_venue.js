@@ -24,6 +24,8 @@ if (venue === "main_auditorium" || venue === "mini_auditorium") {
       phone_no: form.elements["phone_no"].value,
       email: form.elements["email"].value,
       additional_info: form.elements["additional_info"].value,
+      is_student: form.elements["is_student"].value,
+      index_no: form.elements["index_no"].value,
     };
 
     const result = await fetch("http://localhost:3000/events", {
@@ -36,6 +38,8 @@ if (venue === "main_auditorium" || venue === "mini_auditorium") {
     if (data.success) {
       alert("Request for venue placed successfully!");
       window.location.href = "./";
+    } else {
+      alert("Something went wrong. Check your inputs and try again!");
     }
   });
 } else {
