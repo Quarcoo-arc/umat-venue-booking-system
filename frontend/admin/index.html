@@ -17,10 +17,32 @@
       defer
       async
     ></script>
+    <script src="../js/admin.js" defer async></script>
+    <link rel="stylesheet" href="../css/admin.css" />
     <title>UMaT Venue Booking System | Admin</title>
   </head>
   <body>
     <h1 class="text-center pt-3">UMaT VENUE BOOKING SYSTEM</h1>
     <h3 class="text-center pt-2">Admin Dashboard</h3>
+    <main class="my-3">
+      <div class="d-flex row flex-container">
+        <div class="card events">
+          <h5>Total Venue Requests</h5>
+          <h1 class="number" id="events-no">26</h1>
+        </div>
+        <div class="card requests">
+          <h5>New Venue Requests</h5>
+          <h1 class="number" id="new-events-no">6</h1>
+        </div>
+        <div class="card approved">
+          <h5>Approved Requests</h5>
+          <h1 class="number" id="approved-events-no">12</h1>
+        </div>
+        <div class="card disapproved">
+          <h5>Disapproved Requests</h5>
+          <h1 class="number" id="disapproved-events-no">8</h1>
+        </div>
+      </div>
+    </main>
   </body>
 </html>

@@ -1,0 +1,44 @@
+.flex-container {
+  margin-top: 3rem;
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+}
+
+.card {
+  color: white;
+  border-radius: 1rem;
+  display: flex;
+  align-content: center;
+  height: 10rem;
+  width: 14.5rem;
+  text-align: center;
+  padding: 12px;
+  margin: 10px 40px;
+  box-sizing: border-box;
+}
+
+.number {
+  font-size: 4rem;
+  margin-top: 0.4rem;
+}
+
+body {
+  box-sizing: border-box;
+}
+
+.events.card {
+  background-color: rgb(139, 139, 139);
+}
+
+.requests.card {
+  background-color: rgb(180, 126, 20);
+}
+
+.approved.card {
+  background-color: rgb(14, 153, 21);
+}
+.disapproved.card {
+  background-color: rgb(208, 0, 0);
+}

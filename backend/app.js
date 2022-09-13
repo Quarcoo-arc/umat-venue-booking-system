@@ -30,6 +30,8 @@ const eventSchema = new Schema({
   additional_info: String,
   is_student: Boolean,
   index_no: String,
+  is_approved: Boolean,
+  is_disapproved: Boolean,
 });
 
 const Event = model("Event", eventSchema);
@@ -37,14 +39,105 @@ const Event = model("Event", eventSchema);
 app.get("/events", (req, res) => {
   try {
     Event.find({}, (err, events) => {
+      const events_count = events.length;
+      const requested_events = [];
+      const approved_events = [];
+      const disapproved_events = [];
+
+      events.forEach((event) => {
+        if (event.is_approved) {
+          approved_events.push(event);
+        } else if (!event.is_approved && !event.is_disapproved) {
+          requested_events.push(event);
+        } else {
+          disapproved_events.push(event);
+        }
+      });
+
       res.send({
         success: true,
+        no_of_events: events_count,
+        no_of_approved_events: approved_events.length,
+        no_of_requested_events: requested_events.length,
+        no_of_disapproved_events: disapproved_events.length,
+        requested_events,
+        approved_events,
+        disapproved_events,
         events,
       });
     });
   } catch (error) {
     res.send({
       success: false,
+      error,
+    });
+  }
+});
+
+app.get("/events/approved", (req, res) => {
+  try {
+    Event.find({ is_approved: true }, (err, events) => {
+      if (err) {
+        res.send({
+          success: false,
+          error: err,
+        });
+      } else {
+        res.send({
+          succes: true,
+          events,
+        });
+      }
+    });
+  } catch (error) {
+    res.send({
+      succes: false,
+      error,
+    });
+  }
+});
+
+app.get("/events/disapproved", (req, res) => {
+  try {
+    Event.find({ is_approved: false, is_disapproved: true }, (err, events) => {
+      if (err) {
+        res.send({
+          success: false,
+          error: err,
+        });
+      } else {
+        res.send({
+          succes: true,
+          events,
+        });
+      }
+    });
+  } catch (error) {
+    res.send({
+      succes: false,
+      error,
+    });
+  }
+});
+
+app.get("/events/requests", (req, res) => {
+  try {
+    Event.find({ is_approved: false, is_disapproved: false }, (err, events) => {
+      if (err) {
+        res.send({
+          success: false,
+          error: err,
+        });
+      } else {
+        res.send({
+          succes: true,
+          events,
+        });
+      }
+    });
+  } catch (error) {
+    res.send({
+      succes: false,
       error,
     });
   }
@@ -63,6 +156,8 @@ app.post("/events", (req, res) => {
       additional_info: req.body.additional_info,
       is_student: req.body.is_student,
       index_no: req.body.index_no,
+      is_approved: false,
+      is_disapproved: false,
     });
 
     // Send email
